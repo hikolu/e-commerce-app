@@ -3,7 +3,7 @@ package com.hikolu.ecommerceapp.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "product")
 public class Product {
 
     // define fields

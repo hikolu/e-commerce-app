@@ -1,8 +1,12 @@
-# Create Database
+--
+-- Create Database
+--
 CREATE DATABASE IF NOT EXISTS `ecommapp`;
 USE `ecommapp`;
 
-# Create table for products
+--
+-- Create table for products
+--
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product`(
     `product_id` INT NOT NULL AUTO_INCREMENT,
@@ -13,22 +17,53 @@ CREATE TABLE `product`(
     PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-# Insert values into inventory
+--
+-- Insert values into inventory
+--
 
-# Create table for users
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`(
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(255) DEFAULT NULL,
+--
+-- Create table for users
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`(
+    `username` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) DEFAULT NULL,
+    `enabled` TINYINT NOT NULL,
     `email` VARCHAR(255) DEFAULT NULL,
-    `role` VARCHAR(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-# Insert values into users
+--
+-- Insert values into users
+--
 
-# Create table for orders
+INSERT INTO `users` VALUES
+                       ('hikolu','{noop}test123',1,'test@mail.com'),
+                       ('john','{noop}test123',1,'john@mail.com');
+
+--
+-- Create table for roles
+--
+DROP TABLE IF EXISTS `authorities`;
+CREATE TABLE `authorities`(
+    `username` VARCHAR(50) NOT NULL,
+    `authority` VARCHAR(50) NOT NULL,
+    UNIQUE KEY `authorities4_idx_1` (`username`,`authority`),
+    CONSTRAINT `authorities4_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Insert values into roles
+--
+INSERT INTO `authorities` VALUES
+                        ('hikolu','ROLE_ADMIN'),
+                        ('john','ROLE_USER');
+
+--
+-- Create table for orders
+--
+
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`(
     `order_id` INT NOT NULL AUTO_INCREMENT,
