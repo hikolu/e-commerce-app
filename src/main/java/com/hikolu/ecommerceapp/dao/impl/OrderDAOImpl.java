@@ -4,15 +4,9 @@ import com.hikolu.ecommerceapp.dao.OrderDAO;
 import com.hikolu.ecommerceapp.model.Order;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
-import org.aspectj.weaver.ast.Or;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 @Repository
