@@ -18,13 +18,17 @@ CREATE TABLE `product`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
--- Insert values into inventory
+-- Insert values into product
 --
+INSERT INTO `product` VALUES
+                          (1, 'https://freepngimg.com/png/18240-sunglasses-png-image', 'First', '12.0', 1),
+                          (2, 'https://freepngimg.com/thumb/sunglasses/2-2-sunglasses-picture.png', 'Second', '0.123', 19),
+                          (3, 'https://freepngimg.com/thumb/android/87765-logos-icons-brand-computer-black-android-line.png', 'Third', '0.32', 321),
+                          (4, 'https://freepngimg.com/thumb/facebook/25005-9-facebook-like-transparent.png', 'Fourth', '1341.90', 32);
 
 --
 -- Create table for users
 --
-
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`(
     `username` VARCHAR(255) NOT NULL,
@@ -37,7 +41,6 @@ CREATE TABLE `users`(
 --
 -- Insert values into users
 --
-
 INSERT INTO `users` VALUES
                        ('hikolu','{noop}test123',1,'test@mail.com'),
                        ('john','{noop}test123',1,'john@mail.com');
@@ -63,7 +66,6 @@ INSERT INTO `authorities` VALUES
 --
 -- Create table for orders
 --
-
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`(
     `order_id` INT NOT NULL AUTO_INCREMENT,
