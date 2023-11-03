@@ -1,20 +1,16 @@
-package com.hikolu.ecommerceapp.service;
+package com.hikolu.ecommerceapp.dao;
 
 import com.hikolu.ecommerceapp.model.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserDAO {
 
-    // get all users
     List<User> getUsers();
 
-    // get single user by username
     User getUserByUsername(String username);
 
-    // update/create user
     User saveUser(User user);
 
-    // delete user
     String deleteUserById(int id);
 }
