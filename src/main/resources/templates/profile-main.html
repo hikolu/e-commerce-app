@@ -2,11 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>User's profile</title>
 </head>
 <body>
 
-Hello World!
+<div>
+    <span th:text="${user.username}"></span>
+    <span th:text="${user.email}"></span>
+</div>
 
 </body>
 </html>
