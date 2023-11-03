@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class StoreController {
 
     private ProductService productService;
 
     @Autowired
-    public MainController(ProductService productService) {
+    public StoreController(ProductService productService) {
         this.productService = productService;
     }
 

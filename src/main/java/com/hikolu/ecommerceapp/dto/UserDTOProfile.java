@@ -1,16 +1,16 @@
 package com.hikolu.ecommerceapp.dto;
 
-public class UserDTO {
+public class UserDTOProfile {
 
     // define fields that are needed for the purpose of this dto
     private String username;
     private String email;
 
     // define constructors
-    public UserDTO() {
+    public UserDTOProfile() {
     }
 
-    public UserDTO(String username, String email) {
+    public UserDTOProfile(String username, String email) {
         this.username = username;
         this.email = email;
     }

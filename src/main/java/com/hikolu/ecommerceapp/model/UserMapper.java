@@ -1,14 +1,14 @@
 package com.hikolu.ecommerceapp.model;
 
-import com.hikolu.ecommerceapp.dto.UserDTO;
+import com.hikolu.ecommerceapp.dto.UserDTOProfile;
 
 public class UserMapper {
 
     // convert User to UserDTO
-    public static UserDTO mapToUserDTO(User user) {
+    public static UserDTOProfile mapToUserDTO(User user) {
 
-        UserDTO userDTO = new UserDTO(user.getUsername(), user.getEmail());
+        UserDTOProfile userDTOProfile = new UserDTOProfile(user.getUsername(), user.getEmail());
 
-        return userDTO;
+        return userDTOProfile;
     }
 }

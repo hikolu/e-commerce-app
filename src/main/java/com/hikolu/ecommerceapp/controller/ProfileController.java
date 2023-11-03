@@ -1,6 +1,6 @@
 package com.hikolu.ecommerceapp.controller;
 
-import com.hikolu.ecommerceapp.dto.UserDTO;
+import com.hikolu.ecommerceapp.dto.UserDTOProfile;
 import com.hikolu.ecommerceapp.model.User;
 import com.hikolu.ecommerceapp.model.UserMapper;
 import com.hikolu.ecommerceapp.service.UserService;
@@ -28,10 +28,10 @@ public class ProfileController {
         // get user from principal
         String username = principal.getName();
         User dbUser = userService.getUserByUsername(username);
-        UserDTO userDTO = UserMapper.mapToUserDTO(dbUser);
+        UserDTOProfile userDTOProfile = UserMapper.mapToUserDTO(dbUser);
 
         // add attribute to the model
-        model.addAttribute("user", userDTO);
+        model.addAttribute("user", userDTOProfile);
 
         // return page
         return "profile-main";
