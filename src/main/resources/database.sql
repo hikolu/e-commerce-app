@@ -27,6 +27,27 @@ INSERT INTO `product` VALUES
                           (4, 'https://freepngimg.com/thumb/facebook/25005-9-facebook-like-transparent.png', 'Fourth', '1341.90', 32);
 
 --
+-- Create table for orders
+--
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`(
+                        `order_id` INT NOT NULL AUTO_INCREMENT,
+                        `username` VARCHAR(255) DEFAULT NULL,
+                        `quantity` INT DEFAULT 0,
+                        `product_id` INT DEFAULT 0,
+                        `bill` DOUBLE DEFAULT 0,
+                        PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+--
+-- Insert values into order
+--
+INSERT INTO `orders` VALUES
+                        (1, 'hikolu', 1, 1, 1.0),
+                        (2, 'hikolu', 2, 2, 38.0),
+                        (3, 'john', 1, 4, 31.0);
+
+--
 -- Create table for users
 --
 DROP TABLE IF EXISTS `users`;
@@ -42,8 +63,8 @@ CREATE TABLE `users`(
 -- Insert values into users
 --
 INSERT INTO `users` VALUES
-                       ('hikolu','{noop}test123',1,'test@mail.com'),
-                       ('john','{noop}test123',1,'john@mail.com');
+                       ('hikolu','{bcrypt}$2a$12$.0b9ERcRPOVkcxMeuhKt1OgBPqdv.LmtpA.ZxBJGV/8ys713uDO6.',1,'test@mail.com'),
+                       ('john','{bcrypt}$2a$12$.0b9ERcRPOVkcxMeuhKt1OgBPqdv.LmtpA.ZxBJGV/8ys713uDO6.',1,'john@mail.com');
 
 --
 -- Create table for roles
@@ -62,16 +83,3 @@ CREATE TABLE `authorities`(
 INSERT INTO `authorities` VALUES
                         ('hikolu','ROLE_ADMIN'),
                         ('john','ROLE_USER');
-
---
--- Create table for orders
---
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order`(
-    `order_id` INT NOT NULL AUTO_INCREMENT,
-    `user_id` INT DEFAULT 0,
-    `quantity` INT DEFAULT 0,
-    `product_id` INT DEFAULT 0,
-    `bill` DOUBLE DEFAULT 0,
-    PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
