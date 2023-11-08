@@ -16,5 +16,5 @@ public interface UserService {
     User saveUser(User user);
 
     // delete user
-    String deleteUserById(int id);
+    String deleteUserByUsername(String username);
 }

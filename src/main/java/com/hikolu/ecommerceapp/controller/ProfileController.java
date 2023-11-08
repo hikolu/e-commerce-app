@@ -3,7 +3,7 @@ package com.hikolu.ecommerceapp.controller;
 import com.hikolu.ecommerceapp.dto.UserDTOProfile;
 import com.hikolu.ecommerceapp.model.Order;
 import com.hikolu.ecommerceapp.model.User;
-import com.hikolu.ecommerceapp.model.UserMapper;
+import com.hikolu.ecommerceapp.model.ObjectMapper;
 import com.hikolu.ecommerceapp.service.OrderService;
 import com.hikolu.ecommerceapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class ProfileController {
         // get user from principal
         String username = principal.getName();
         User dbUser = userService.getUserByUsername(username);
-        UserDTOProfile userDTOProfile = UserMapper.mapToUserDTO(dbUser);
+        UserDTOProfile userDTOProfile = ObjectMapper.mapToUserDTO(dbUser);
 
         // add attribute to the model
         model.addAttribute("user", userDTOProfile);
@@ -87,16 +87,5 @@ public class ProfileController {
 
         // return page
         return "/profile/my-orders";
-    }
-
-    // expose GET "/delete"
-    @GetMapping("/delete")
-    public String deleteProfile(@RequestParam("user_id") int userId) {
-
-        // delete the user
-        userService.deleteUserById(userId);
-
-        // redirect
-        return "redirect:/store";
     }
 }

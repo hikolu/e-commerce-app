@@ -23,6 +23,9 @@
                 <td th:text="${tempOrder.quantity}"></td>
                 <td th:text="${tempOrder.productId}"></td>
                 <td th:text="${tempOrder.bill}"></td>
+                <td>
+                    <a th:href="@{/order/cancel(orderId=${tempOrder.orderId})}" onclick="if (!(confirm('Are you sure?'))) return false">Cancel</a>
+                </td>
             </tr>
         </tbody>
     </table>

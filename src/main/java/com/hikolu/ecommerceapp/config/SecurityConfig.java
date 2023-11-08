@@ -25,13 +25,20 @@ public class SecurityConfig {
         return new JdbcUserDetailsManager(dataSource);
     }
 
-    // set filter chain
+//     set filter chain
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 //
 //        httpSecurity.authorizeHttpRequests(configurer ->
 //                configurer
-//                        .requestMatchers(HttpMethod.GET, "/store").hasRole("USER"));
+//                        .requestMatchers(HttpMethod.GET, "/").hasRole("USER")
+//                        .requestMatchers(HttpMethod.GET, "/").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.GET, "/profile").hasRole("USER")
+//                        .requestMatchers(HttpMethod.GET, "/profile").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.GET, "/profile/my-orders").hasRole("USER")
+//                        .requestMatchers(HttpMethod.GET, "/profile/my-orders").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.GET, "/store").hasRole("USER")
+//                        .requestMatchers(HttpMethod.GET, "/store").hasRole("ADMIN"));
 //
 //        httpSecurity.httpBasic(Customizer.withDefaults());
 //

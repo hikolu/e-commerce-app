@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Store</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<header>
+    <h1>NFT Marketplace</h1>
+    <nav>
+        <a href="#">Explore</a>
+        <a href="#">My NFTs</a>
+        <a href="#">Create</a>
+        <a href="#">Connect Wallet</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <h2 class="hero-title">Discover a World of NFTs</h2>
+        <p class="hero-description">Explore a vast collection of unique digital assets, from art and collectibles to virtual worlds and gaming items.</p>
+        <button class="btn-primary">Browse Marketplace</button>
+    </section>
+
+    <section class="featured-collections">
+        <h2>Featured Collections</h2>
+        <div class="collections-grid">
+            <table class="table">
+                <thead class="th">
+                    <tr>
+                        <th class="th">Name</th>
+                        <th class="th">Image</th>
+                        <th class="th">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tempProduct : ${products}">
+                    <td th:text="${tempProduct.name}" class="td"></td>
+                    <td>
+                        <img th:src="${tempProduct.image}" class="collection-image">
+                    </td>
+                    <td th:text="${tempProduct.price}" class="price"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

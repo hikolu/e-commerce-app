@@ -12,5 +12,5 @@ public interface UserDAO {
 
     User saveUser(User user);
 
-    String deleteUserById(int id);
+    String deleteUserByUsername(String username);
 }

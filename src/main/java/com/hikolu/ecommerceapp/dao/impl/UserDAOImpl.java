@@ -53,15 +53,15 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public String deleteUserById(int id) {
+    public String deleteUserByUsername(String username) {
 
         // find user in db by id
-        User dbUser = entityManager.find(User.class, id);
+        User dbUser = entityManager.find(User.class, username);
 
         // delete user
         entityManager.remove(dbUser);
 
         // return confirmation string
-        return "User deleted, id - " + id;
+        return "User deleted, username - " + username;
     }
 }
