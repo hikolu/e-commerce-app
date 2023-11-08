@@ -3,7 +3,7 @@ package com.hikolu.ecommerceapp.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
     // define fields
@@ -13,8 +13,8 @@ public class Order {
     @Column(name = "order_id")
     private int orderId;
 
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "quantity")
     private int quantity;
@@ -30,8 +30,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(int userId, int quantity, int productId, double bill) {
-        this.userId = userId;
+    public Order(String username, int quantity, int productId, double bill) {
+        this.username = username;
         this.quantity = quantity;
         this.productId = productId;
         this.bill = bill;
@@ -48,11 +48,11 @@ public class Order {
     }
 
     public int getUserId() {
-        return userId;
+        return orderId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(String username) {
+        this.username = username;
     }
 
     public int getQuantity() {

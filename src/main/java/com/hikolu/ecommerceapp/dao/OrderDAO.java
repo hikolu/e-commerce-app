@@ -11,7 +11,7 @@ public interface OrderDAO {
 
     Order getOrderById(int id);
 
-    Order getOrderByUserId(int userId);
+    List<Order> getOrderByUsername(String username);
 
     // create and update
     Order saveOrder(Order order);

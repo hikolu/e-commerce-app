@@ -30,8 +30,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderByUserId(int id) {
-        return orderDAO.getOrderByUserId(id);
+    public List<Order> getOrderByUsername(String username) {
+        return orderDAO.getOrderByUsername(username);
     }
 
     @Override

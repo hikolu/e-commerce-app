@@ -45,17 +45,17 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public Order getOrderByUserId(int userId) {
+    public List<Order> getOrderByUsername(String username) {
 
         // define query
-        TypedQuery<Order> query = entityManager.createQuery("from Order u where u.userId=:userId", Order.class);
-        query.setParameter("userId", userId);
+        TypedQuery<Order> query = entityManager.createQuery("from Order u where u.username=:username", Order.class);
+        query.setParameter("username", username);
 
-        // get order from db
-        Order order = query.getSingleResult();
+        // get orders from db
+        List<Order> orders = query.getResultList();
 
         // return order
-        return order;
+        return orders;
     }
 
     @Override

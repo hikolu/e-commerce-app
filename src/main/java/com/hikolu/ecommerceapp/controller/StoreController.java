@@ -29,7 +29,7 @@ public class StoreController {
         model.addAttribute("products", products);
 
         // return page
-        return "/store";
+        return "/store/store";
     }
 
     // expose "/best-sellers" endpoint

@@ -5,6 +5,7 @@ import com.hikolu.ecommerceapp.model.User;
 import com.hikolu.ecommerceapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,11 +30,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User saveUser(User user) {
         return userDAO.saveUser(user);
     }
 
     @Override
+    @Transactional
     public String deleteUserById(int id) {
         return userDAO.deleteUserById(id);
     }

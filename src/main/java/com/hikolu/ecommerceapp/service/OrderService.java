@@ -13,7 +13,7 @@ public interface OrderService {
     Order getOrderById(int id);
 
     // find order by id
-    Order getOrderByUserId(int id);
+    List<Order> getOrderByUsername(String username);
 
     // update/create order
     Order saveOrder(Order order);

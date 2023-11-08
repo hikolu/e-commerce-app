@@ -2,6 +2,8 @@ package com.hikolu.ecommerceapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 
@@ -9,6 +11,12 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
+
+    // setup encryptor
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     // get user details from the database
     @Bean
