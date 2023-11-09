@@ -1,8 +1,11 @@
 package com.hikolu.ecommerceapp.dao.impl;
 
 import com.hikolu.ecommerceapp.dao.ProductDAO;
+import com.hikolu.ecommerceapp.dto.ProductDTOMain;
+import com.hikolu.ecommerceapp.model.ObjectMapper;
 import com.hikolu.ecommerceapp.model.Product;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,6 +45,25 @@ public class ProductDAOImpl implements ProductDAO {
 
         // return product
         return product;
+    }
+
+    @Override
+    public List<ProductDTOMain> getOwnersASC() {
+
+        // setup query
+        Query query = entityManager.createQuery("from Product p order by p.owners asc");
+
+        // get results
+        List<Product> results = query.getResultList();
+
+        // limit only first 5 results
+        List<ProductDTOMain> dtoMains = results.stream()
+                .limit(5)
+                .map(ObjectMapper::mapToProductDTO)
+                .toList();
+
+        // return results
+        return dtoMains;
     }
 
     @Override

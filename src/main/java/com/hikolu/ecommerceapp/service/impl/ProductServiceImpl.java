@@ -1,6 +1,7 @@
 package com.hikolu.ecommerceapp.service.impl;
 
 import com.hikolu.ecommerceapp.dao.ProductDAO;
+import com.hikolu.ecommerceapp.dto.ProductDTOMain;
 import com.hikolu.ecommerceapp.model.Product;
 import com.hikolu.ecommerceapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public Product saveProduct(Product product) {
         return productDAO.saveProduct(product);
+    }
+
+    @Override
+    public List<ProductDTOMain> getBestSellers() {
+        return productDAO.getOwnersASC();
     }
 
     @Override
