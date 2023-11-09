@@ -53,6 +53,10 @@ th {
     font-weight: bold;
 }
 
+td {
+    border: none;
+}
+
 .collection-image,
 .nft-image {
     width: 100px;

@@ -54,14 +54,6 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getUserId() {
-        return orderId;
-    }
-
-    public void setUserId(String username) {
-        this.username = username;
-    }
-
     public int getQuantity() {
         return quantity;
     }

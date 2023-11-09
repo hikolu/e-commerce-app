@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Best Sellers</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<table class="table">
+    <thead class="th">
+    <tr>
+        <th class="th">Name</th>
+        <th class="th">Image</th>
+        <th class="th">Price</th>
+        <th scope="col" class="th">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tempProduct : ${products}">
+        <td th:text="${tempProduct.name}" class="td"></td>
+        <td>
+            <img th:src="${tempProduct.image}" class="collection-image">
+        </td>
+        <td th:text="${tempProduct.price}" class="price"></td>
+        <td>
+            <a th:href="@{/order(productId=${tempProduct.productId})}"><button>Order</button></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
