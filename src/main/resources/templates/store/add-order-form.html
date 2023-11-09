@@ -9,10 +9,10 @@
 <div>
     <h3>Add a new Order</h3>
     <hr>
-    <span th:field="${order.productId}"></span>
 
     <form action="#" th:action="@{/order/save}" th:object="${order}" method="POST">
         <input type="text" th:field="*{quantity}">
+        <input type="hidden" th:field="${order.productId}">
         <button type="submit">Order</button>
     </form>
 </div>

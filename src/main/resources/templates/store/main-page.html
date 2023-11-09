@@ -10,10 +10,10 @@
 <header>
     <h1>NFT Marketplace</h1>
     <nav>
-        <a href="#">Explore</a>
-        <a href="#">My NFTs</a>
-        <a href="#">Create</a>
-        <a href="#">Connect Wallet</a>
+        <a href="#" th:href="@{/store}">Explore</a>
+        <a href="#" th:href="@{/profile/my-orders}">My NFTs</a>
+        <a href="#" th:href="@{/store/create}">Create</a>
+        <a href="#" th:href="@{/profile}">Profile</a>
     </nav>
 </header>
 
@@ -21,7 +21,7 @@
     <section class="hero">
         <h2 class="hero-title">Discover a World of NFTs</h2>
         <p class="hero-description">Explore a vast collection of unique digital assets, from art and collectibles to virtual worlds and gaming items.</p>
-        <button class="btn-primary">Browse Marketplace</button>
+        <a th:href="@{/store}"><button class="btn-primary">Browse Marketplace</button></a>
     </section>
 
     <section class="featured-collections">
@@ -38,10 +38,10 @@
                 <tbody>
                 <tr th:each="tempProduct : ${products}">
                     <td th:text="${tempProduct.name}" class="td"></td>
-                    <td>
+                    <td class="td">
                         <img th:src="${tempProduct.image}" class="collection-image">
                     </td>
-                    <td th:text="${tempProduct.price}" class="price"></td>
+                    <td th:text="${tempProduct.price}" class="price td"></td>
                 </tr>
                 </tbody>
             </table>
