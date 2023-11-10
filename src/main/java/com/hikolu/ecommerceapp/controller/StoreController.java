@@ -4,9 +4,11 @@ import com.hikolu.ecommerceapp.dto.ProductDTOMain;
 import com.hikolu.ecommerceapp.model.ObjectMapper;
 import com.hikolu.ecommerceapp.model.Product;
 import com.hikolu.ecommerceapp.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -85,16 +87,22 @@ public class StoreController {
     }
 
     // expose POST "/store/save" to add a new object
-    @PostMapping("/store/save")
-    public String save(@ModelAttribute("product") Product product) {
+    @PostMapping("/store/create")
+    public String save(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult) {
 
-        // set the id to 0 just in case the add an object with id (so that it is not updated)
-        product.setProductId(0);
+        // check if it has error
+        if (bindingResult.hasErrors()) {
+            return "/store/addProductForm";
+        } else {
 
-        // save the product
-        productService.saveProduct(product);
+            // set the id to 0 just in case the add an object with id (so that it is not updated)
+            product.setProductId(0);
 
-        // redirect
-        return "redirect:/";
+            // save the product
+            productService.saveProduct(product);
+
+            // redirect
+            return "redirect:/";
+        }
     }
 }

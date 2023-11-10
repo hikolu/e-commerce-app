@@ -3,7 +3,7 @@ body {
 }
 
 header {
-    background-color: #f2f2f2;
+    background-color: lightcyan;
     padding: 20px;
 }
 
@@ -66,4 +66,8 @@ td {
 .price {
     color: #007bff;
     font-weight: bold;
+}
+
+.error {
+    color: red;
 }

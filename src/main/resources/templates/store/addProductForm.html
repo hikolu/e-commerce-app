@@ -10,12 +10,24 @@
 <h3>Add a new NFT</h3>
 <hr>
 
-<form action="#" th:action="@{/store/save}" th:object="${product}" method="POST">
-    <input type="text" th:field="*{name}" placeholder="Name of the NFT">
-    <input type="text" th:field="*{image}" placeholder="Image">
-    <input type="text" th:field="*{price}" placeholder="Your Price">
+<form action="#" th:action="@{/store/create}" th:object="${product}" method="POST">
 
-    <button type="submit">Save</button>
+    Name: <input type="text" th:field="*{name}" placeholder="Name of the NFT">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span>
+
+    <br><br>
+
+    Your NFT: <input type="text" th:field="*{image}" placeholder="Image">
+    <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="error"></span>
+
+    <br><br>
+
+    Price: <input type="text" th:field="*{price}" placeholder="Your Price">
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></span>
+
+    <br><br>
+
+    <input type="submit" th:value="Submit">
 </form>
 
 <hr>
