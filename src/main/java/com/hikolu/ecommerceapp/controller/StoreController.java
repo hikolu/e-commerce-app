@@ -6,10 +6,13 @@ import com.hikolu.ecommerceapp.model.Product;
 import com.hikolu.ecommerceapp.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -23,6 +26,14 @@ public class StoreController {
     @Autowired
     public StoreController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+        webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
     // expose GET "/" for the main page

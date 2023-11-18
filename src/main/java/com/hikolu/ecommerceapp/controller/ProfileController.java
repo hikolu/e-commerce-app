@@ -1,16 +1,20 @@
 package com.hikolu.ecommerceapp.controller;
 
 import com.hikolu.ecommerceapp.dto.UserDTOProfile;
+import com.hikolu.ecommerceapp.model.ObjectMapper;
 import com.hikolu.ecommerceapp.model.Order;
 import com.hikolu.ecommerceapp.model.User;
-import com.hikolu.ecommerceapp.model.ObjectMapper;
 import com.hikolu.ecommerceapp.service.OrderService;
 import com.hikolu.ecommerceapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 import java.util.List;
@@ -20,13 +24,11 @@ import java.util.List;
 public class ProfileController {
 
     private UserService userService;
-    private PasswordEncoder passwordEncoder;
     private OrderService orderService;
 
     @Autowired
-    public ProfileController(UserService userService, PasswordEncoder passwordEncoder, OrderService orderService) {
+    public ProfileController(UserService userService, OrderService orderService) {
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
         this.orderService = orderService;
     }
 
@@ -61,18 +63,19 @@ public class ProfileController {
     }
 
     // expose POST "/save" to save profile
-    @PostMapping("/save")
-    public String saveUser(@ModelAttribute("user") User user) {
+    @PostMapping
+    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
 
-        // encrypt password
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEnabled(1);
+        // check if it has errors
+        if (bindingResult.hasErrors()) {
+            return "profile/user-form";
+        } else {
+            // save user
+            userService.saveUser(user);
 
-        // save user
-        userService.saveUser(user);
-
-        // redirect to prevent multiple submissions
-        return "redirect:/profile";
+            // redirect to prevent multiple submissions
+            return "redirect:/profile";
+        }
     }
 
     // expose GET "/my-orders" endpoint
