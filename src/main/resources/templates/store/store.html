@@ -8,13 +8,16 @@
 <body>
 
 <header>
-    <h1>NFT Marketplace</h1>
-    <nav>
-        <a href="#" th:href="@{/store}">Explore</a>
-        <a href="#" th:href="@{/profile/my-orders}">My NFTs</a>
-        <a href="#" th:href="@{/store/create}">Create</a>
-        <a href="#" th:href="@{/profile}">Profile</a>
-    </nav>
+    <div class="nav-main">
+        <a th:href="@{/}"><h1>NFT Marketplace</h1></a>
+        <nav>
+            <a href="#" th:href="@{/store}">Explore</a>
+            <a href="#" th:href="@{/profile/my-orders}">My NFTs</a>
+            <a href="#" th:href="@{/store/create}">Create</a>
+            <a th:href="@{/store/best-sellers}">Best Sellers</a>
+            <a href="#" th:href="@{/profile}">Profile</a>
+        </nav>
+    </div>
 </header>
 
 <div class="collections-grid">

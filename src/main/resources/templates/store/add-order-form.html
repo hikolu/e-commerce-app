@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Order Form</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 
@@ -10,9 +11,17 @@
     <h3>Add a new Order</h3>
     <hr>
 
-    <form action="#" th:action="@{/order/save}" th:object="${order}" method="POST">
+    <form action="#" th:action="@{/order}" th:object="${order}" method="POST">
+
         <input type="text" th:field="*{quantity}">
+        <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error"></span>
+
+        <br><br>
+
         <input type="hidden" th:field="${order.productId}">
+
+        <br><br>
+
         <button type="submit">Order</button>
     </form>
 </div>

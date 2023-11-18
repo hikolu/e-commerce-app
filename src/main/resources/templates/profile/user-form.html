@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User Update Form</title>
+    <link rel="stylesheet" href="/css/main-css.css">
 </head>
 <body>
 
@@ -10,12 +11,22 @@
   <h3>Update Profile</h3>
   <hr>
 
-  <form action="#" th:action="@{/profile/save}" th:object="${user}" method="POST">
+  <form action="#" th:action="@{/profile}" th:object="${user}" method="POST">
 
     <input type="text" th:field="*{username}">
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></span>
+
+    <br><br>
 
     <input type="password" th:field="*{password}" placeholder="New password">
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></span>
+
+    <br><br>
+
     <input type="text" th:field="*{email}" placeholder="New email">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+
+    <br><br>
 
     <button type="submit">Save</button>
   </form>
