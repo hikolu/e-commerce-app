@@ -4,7 +4,7 @@ import com.hikolu.ecommerceapp.model.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService{
 
     // get all users
     List<User> getUsers();
