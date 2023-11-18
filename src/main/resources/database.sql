@@ -5,9 +5,16 @@ CREATE DATABASE IF NOT EXISTS `ecommapp`;
 USE `ecommapp`;
 
 --
--- Create table for products
+-- Delete tables
 --
 DROP TABLE IF EXISTS `product`;
+DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS `authorities`;
+DROP TABLE IF EXISTS `users`;
+
+--
+-- Create table for products
+--
 CREATE TABLE `product`(
     `product_id` INT NOT NULL AUTO_INCREMENT,
     `image` varchar(255) DEFAULT NULL,
@@ -29,7 +36,6 @@ INSERT INTO `product` VALUES
 --
 -- Create table for orders
 --
-DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`(
                         `order_id` INT NOT NULL AUTO_INCREMENT,
                         `username` VARCHAR(255) DEFAULT NULL,
@@ -50,9 +56,8 @@ INSERT INTO `orders` VALUES
 --
 -- Create table for users
 --
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`(
-    `username` VARCHAR(255) NOT NULL,
+    `username` varchar(50) NOT NULL,
     `password` VARCHAR(255) DEFAULT NULL,
     `enabled` TINYINT NOT NULL,
     `email` VARCHAR(255) DEFAULT NULL,
@@ -62,24 +67,25 @@ CREATE TABLE `users`(
 --
 -- Insert values into users
 --
-INSERT INTO `users` VALUES
-                       ('hikolu','{bcrypt}$2a$12$.0b9ERcRPOVkcxMeuhKt1OgBPqdv.LmtpA.ZxBJGV/8ys713uDO6.',1,'test@mail.com'),
-                       ('john','{bcrypt}$2a$12$.0b9ERcRPOVkcxMeuhKt1OgBPqdv.LmtpA.ZxBJGV/8ys713uDO6.',1,'john@mail.com');
+INSERT INTO `users` (`username`,`password`,`enabled`, `email`) VALUES
+                       ('hikolu','{bcrypt}$2y$10$wh9PKj.m0NlDQAnNvMJ15.Hh4qCjmgDsBYSEjUvIvSlszH4hVQtge',1,'test@mail.com'),
+                       ('john','{bcrypt}$2y$10$wh9PKj.m0NlDQAnNvMJ15.Hh4qCjmgDsBYSEjUvIvSlszH4hVQtge',1,'john@mail.com');
 
 --
 -- Create table for roles
 --
-DROP TABLE IF EXISTS `authorities`;
 CREATE TABLE `authorities`(
-    `username` VARCHAR(50) NOT NULL,
-    `authority` VARCHAR(50) NOT NULL,
-    UNIQUE KEY `authorities4_idx_1` (`username`,`authority`),
-    CONSTRAINT `authorities4_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+                              `username` VARCHAR(50) NOT NULL,
+                              `authority` VARCHAR(50) NOT NULL,
+                              UNIQUE KEY `authorities4_idx_1` (`username`,`authority`),
+                              CONSTRAINT `authorities4_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Insert values into roles
 --
-INSERT INTO `authorities` VALUES
-                        ('hikolu','ROLE_ADMIN'),
-                        ('john','ROLE_USER');
+INSERT INTO `authorities`
+VALUES
+    ('hikolu','ROLE_USER'),
+    ('hikolu','ROLE_ADMIN'),
+    ('john','ROLE_USER');
