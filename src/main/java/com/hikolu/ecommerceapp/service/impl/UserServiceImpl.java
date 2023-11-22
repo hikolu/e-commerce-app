@@ -4,12 +4,14 @@ import com.hikolu.ecommerceapp.dao.RoleDAO;
 import com.hikolu.ecommerceapp.dao.UserDAO;
 import com.hikolu.ecommerceapp.model.Role;
 import com.hikolu.ecommerceapp.model.User;
+import com.hikolu.ecommerceapp.model.WebUser;
 import com.hikolu.ecommerceapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,11 +24,13 @@ public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO;
     private RoleDAO roleDAO;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO) {
+    public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
         this.roleDAO = roleDAO;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -41,8 +45,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User saveUser(User user) {
-        return userDAO.saveUser(user);
+    public User saveUser(WebUser webUser) {
+
+        User user = new User();
+
+        // assign user details to the user object
+        user.setUsername(webUser.getUsername());
+        user.setPassword(passwordEncoder.encode(webUser.getPassword()));
+        user.setEnabled(1);
+        user.setEmail(webUser.getEmail());
+
+        User dbUser = userDAO.saveUser(user);
+
+        // give user default role
+        Role userRole = new Role(webUser.getUsername(), "ROLE_USER");
+        roleDAO.save(userRole);
+
+        // save user
+        return dbUser;
     }
 
     @Override

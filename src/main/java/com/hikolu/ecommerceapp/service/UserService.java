@@ -1,6 +1,7 @@
 package com.hikolu.ecommerceapp.service;
 
 import com.hikolu.ecommerceapp.model.User;
+import com.hikolu.ecommerceapp.model.WebUser;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface UserService extends UserDetailsService {
     User getUserByUsername(String username);
 
     // update/create user
-    User saveUser(User user);
+    User saveUser(WebUser user);
 
     // delete user
     String deleteUserByUsername(String username);
