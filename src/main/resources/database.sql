@@ -68,8 +68,8 @@ CREATE TABLE `users`(
 -- Insert values into users
 --
 INSERT INTO `users` (`username`,`password`,`enabled`, `email`) VALUES
-                       ('hikolu','{bcrypt}$2y$10$wh9PKj.m0NlDQAnNvMJ15.Hh4qCjmgDsBYSEjUvIvSlszH4hVQtge',1,'test@mail.com'),
-                       ('john','{bcrypt}$2y$10$wh9PKj.m0NlDQAnNvMJ15.Hh4qCjmgDsBYSEjUvIvSlszH4hVQtge',1,'john@mail.com');
+                       ('hikolu','$2y$10$wh9PKj.m0NlDQAnNvMJ15.Hh4qCjmgDsBYSEjUvIvSlszH4hVQtge',1,'test@mail.com'),
+                       ('john','$2y$10$wh9PKj.m0NlDQAnNvMJ15.Hh4qCjmgDsBYSEjUvIvSlszH4hVQtge',1,'john@mail.com');
 
 --
 -- Create table for roles
