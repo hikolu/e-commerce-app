@@ -7,11 +7,8 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.sql.DataSource;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -34,29 +31,23 @@ public class SecurityConfig {
         return auth;
     }
 
-    // get user details from the database
-    @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource) {
-
-        return new JdbcUserDetailsManager(dataSource);
-    }
-
     // set filter chain
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity, AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
 
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers("/").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/store/**").hasAnyRole(  "ADMIN")
+                        .requestMatchers("/store/**").hasAnyRole( "USER", "ADMIN")
                         .requestMatchers("/profile/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/order/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/authenticateTheUser")
-                        .defaultSuccessUrl("/")
+                        .successHandler(authenticationSuccessHandler)
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll)
