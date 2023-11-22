@@ -11,7 +11,7 @@
   <h3>Update Profile</h3>
   <hr>
 
-  <form action="#" th:action="@{/profile}" th:object="${user}" method="POST">
+  <form action="#" th:action="@{/profile}" th:object="${webUser}" method="POST">
 
     <input type="text" th:field="*{username}">
     <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></span>
