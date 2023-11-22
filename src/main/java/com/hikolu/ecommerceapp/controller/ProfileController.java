@@ -4,6 +4,7 @@ import com.hikolu.ecommerceapp.dto.UserDTOProfile;
 import com.hikolu.ecommerceapp.model.ObjectMapper;
 import com.hikolu.ecommerceapp.model.Order;
 import com.hikolu.ecommerceapp.model.User;
+import com.hikolu.ecommerceapp.model.WebUser;
 import com.hikolu.ecommerceapp.service.OrderService;
 import com.hikolu.ecommerceapp.service.UserService;
 import jakarta.validation.Valid;
@@ -55,8 +56,11 @@ public class ProfileController {
         // get user from db
         User dbUser = userService.getUserByUsername(principal.getName());
 
+        // map to web user
+        WebUser webUser = ObjectMapper.mapUserToWebUser(dbUser);
+
         // add attribute to the model to prepopulate form
-        model.addAttribute("user", dbUser);
+        model.addAttribute("webUser", webUser);
 
         // return page
         return "profile/user-form";
@@ -64,14 +68,14 @@ public class ProfileController {
 
     // expose POST "/save" to save profile
     @PostMapping
-    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+    public String saveUser(@Valid @ModelAttribute("webUser") WebUser webUser, BindingResult bindingResult) {
 
         // check if it has errors
         if (bindingResult.hasErrors()) {
             return "profile/user-form";
         } else {
             // save user
-            userService.saveUser(user);
+            userService.saveUser(webUser);
 
             // redirect to prevent multiple submissions
             return "redirect:/profile";
