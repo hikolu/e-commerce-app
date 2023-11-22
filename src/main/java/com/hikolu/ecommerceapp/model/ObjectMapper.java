@@ -20,4 +20,11 @@ public class ObjectMapper {
 
         return productDTOMain;
     }
+
+    public static WebUser mapUserToWebUser(User user) {
+
+        WebUser webUser = new WebUser(user.getUsername(), user.getPassword(), user.getEmail());
+
+        return webUser;
+    }
 }
