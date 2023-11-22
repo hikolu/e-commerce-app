@@ -1,4 +1,4 @@
-package com.hikolu.ecommerceapp.controller;
+package com.hikolu.ecommerceapp.config;
 
 import com.hikolu.ecommerceapp.model.User;
 import com.hikolu.ecommerceapp.service.UserService;
