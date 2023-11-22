@@ -30,4 +30,10 @@ public class RoleDAOImpl implements RoleDAO {
 
         return roles;
     }
+
+    @Override
+    public Role save(Role role) {
+
+        return entityManager.merge(role);
+    }
 }

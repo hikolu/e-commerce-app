@@ -7,4 +7,6 @@ import java.util.List;
 public interface RoleDAO {
 
     List<Role> findRolesByUsername(String username);
+
+    Role save(Role role);
 }
